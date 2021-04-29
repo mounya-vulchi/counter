@@ -1,0 +1,86 @@
+<!-- <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+    <form #ref="ngForm" (ngSubmit)="doLogin(ref)">
+
+   
+    <div class="form-group">
+    <label for="un">Username</label>
+    <input type="text" name="username" id="un" ngModel class="form-control" minlength="4" #ref1="ngModel">
+    </div>
+
+    
+    <div *ngIf="ref1.invalid&&ref1.dirty" class="text-danger">*Username is required</div>
+
+   
+    <div class="form-group">
+        <label for="pw">Password</label>
+        <input type="password" name="password" id="pw" class="form-control" required minlength="5" ngModel #ref2="ngModel">
+    </div>
+    
+    <div *ngIf="ref2.invalid&&(ref2.touched||ref2.dirty)" class="text-danger">
+        <div *ngIf="ref2.errors?.required" class="text-danger">password is required</div>
+        <div *ngIf="ref2.errors?.minlength" class="text-danger">password length should be atleast 5 characters</div>
+    </div>
+
+    
+    <div class="text-center">
+    <button type="submit" class="btn btn-success" [disabled]="ref.invalid">Login</button>
+    </div>
+    </form>
+    </div>
+    <div class="col-sm-3"></div>
+   </div> -->
+
+
+   <form class="form" #registerForm="ngForm" (ngSubmit)="registerForm.form.valid&&onSubmit()">
+       <div class="form-group">
+           <label>Name</label>
+           <input type="text" class="form-control" name="name"[(ngModel)]="userModal.name" #name="ngModel" required>
+           <span class="text-danger" *ngIf="(name.touched||registerForm.submitted)&&name.errors?.required">Name is required</span>
+       </div>
+       <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email"[(ngModel)]="userModal.email" #email="ngModel" required email>
+        <span class="text-danger" *ngIf="(email.touched||registerForm.submitted) && email.errors?.required">Email is required</span>
+        <span class="text-danger" *ngIf="email.touched && email.errors?.email">Enter a valid email address</span>
+    </div>
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" name="username"[(ngModel)]="userModal.username" #username="ngModel" appValidateUserName required>
+        <span class="text-danger" *ngIf="(username.touched||registerForm.submitted)&&username.errors?.required">username is required</span>
+        <span class="text-danger" *ngIf="(username.touched&&username.errors?.userNameNotAvailable)">username not available</span>
+    </div>
+    <div class="form-group">
+        <label>password</label>
+        <input type="password" class="form-control" name="password"[(ngModel)]="userModal.password" #password="ngModel" appPasswordPattern required>
+        <span class="text-danger" *ngIf="(password.touched||registerForm.submitted)&&password.errors?.required">password is required</span>
+        <span class="text-danger" *ngIf="password.touched&&password.errors?.invalidPassword">Password should have minimum 8 characters, atleast 1 uppercase letter, 1 lowercase letter and 1 number</span>
+    </div>
+    <button type="submit"class="btn btn-primary mt-4">Submit</button>
+   </form>
+
+
+
+   <div class="container">
+       <table class="table">
+        <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+           <tr *ngFor="let obj of Users,let i=index">
+               <td>{{obj.name}}</td>
+               <td>{{obj.email}}</td>
+               <td>{{obj.username}}</td>
+               <td>{{obj.password}}</td>
+               <button class="btn btn-success"(click)="delete(i)">X</button>
+           </tr>
+
+       </table>
+
+   </div>

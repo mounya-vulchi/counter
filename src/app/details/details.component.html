@@ -1,0 +1,55 @@
+
+
+
+<div class="row  pb-5">
+    <div class="col-sm-3 col-md-3 col-lg-3 pt-5" *ngFor="let obj of dataObj" style="text-align: center;">
+        <p><b>Capital:</b>{{obj.capital}}</p>
+        <p *ngFor="let i of obj.currencies"><b>Currency:</b>{{i.name}}</p>
+        <p><b>Timezone:</b>{{obj.timezones}}</p>
+        <p *ngFor="let i of obj.languages"><b>Languages:</b>{{i.name}}</p>
+    </div>
+    <div class="col-sm-6 col-lg-6 col-md-6 pt-5 "  style="text-align: center;">
+        <img *ngFor="let obj of dataObj" [src]="obj.flag" class="w-50">
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3 pt-5" *ngFor="let obj of dataObj" style="text-align: center;">
+        <p><b>Borders:</b>{{obj.borders}}</p>
+        <p><b>Region:</b>{{obj.region}}</p>
+        <p><b>Subregion:</b>{{obj.subregion}}</p>
+        <p><b>Population:</b>{{obj.population}}</p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="col-sm-3 col-md-3 col-lg-3" *ngFor="let obj of dataObj">
+            <p><span class="fw-bold">Capital:</span>{{obj.capital}}</p>
+    
+            <div *ngFor="let i of obj.currencies">
+                <p><span class="fw-bold">Currency:</span>{{i.symbol}}</p>
+            </div>
+            <p><span class="fw-bold">Timezone:</span>{{obj.timezones}}</p>
+           
+                <span>Languages:</span><ul>
+                    <li *ngFor="let i of obj.languages">{{i.nativeName}}</li>
+                </ul>
+    
+        <div class="col-sm-6 col-lg-6 col-md-6 "  style="text-align: center;">
+            <img *ngFor="let obj of dataObj" [src]="obj.flag" class="w-50">
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 " *ngFor="let obj of dataObj">
+            <p><span class="fw-bold">Borders:</span>Borders:{{obj.borders}}</p>
+            <p><span class="fw-bold">Region:</span>{{obj.region}}</p>
+            <p><span class="fw-bold">Subregion:</span>{{obj.subregion}}</p>
+        </div>
+ -->
